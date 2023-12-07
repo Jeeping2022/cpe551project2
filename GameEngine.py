@@ -112,4 +112,109 @@ class GameEngine:
             # if the last elif is false, then there must be a rabbit or captain in the new position
             # in that case the move is skipped so nothing needs to be implemented
 
+    def initCaptain(self):
+        # calc field width and field height
+        fw, fh = len(self.__field[0]), len(self.__field)
+        while True:
+            randPos = random.randint(0, (fw*fh)-1)
+            ry, rx = (randPos // fw) , (randPos % fh)
+            if(self.__field[ry][rx] == None):
+                c = Captain(ry, rx)
+                self.__field[ry][rx] = c
+                self.__captain = c
+                break
+            else:
+                continue
+                
+    def moveCptVertical(self, inp):
+        if self.__captain = None:
+            print("No captain object found!")
+        else:
+            move = 1 if (inp > 0) else -1
+            # initiate location and destination
+            oldpos = [self.__captain.getypos(), self.__captain.getxpos()]
+            newpos = [self.__captain.getypos() + move][self.__captain.getxpos()]
+            # object at the destination
+            target = self.__field[newpos[0]][newpos[1]]
+            if target == None:
+                # update field
+                self.__field[newpos[0]][newpos[1]] = self.__captain 
+                self.__field[oldpos[0]][oldpos[1]] = None
+                # update captain
+                self.__captain.setypos(self.__captain.getypos() + move)
+            elif isinstance(target, Veggie):
+                # update field
+                self.__field[newpos[0]][newpos[1]] = self.__captain 
+                self.__field[oldpos[0]][oldpos[1]] = None
+                # update captain
+                self.__captain.setypos(self.__captain.getypos() + move)
+                
+                name, worth = target.getname(), target.getworth()
+                print("Captain has picked up a delicious", name, "from the field!")
+                self.__captain.addVeggie(target)
+                self.__score += worth
+            elif isinstance(target, Rabbit):
+                x = "up" if move == 1 else "down"
+                print("Can't move " + x + "; Don't step on the rabbits!")
+                
+    def moveCptHorizontal(self, inp):
+        if self.__captain = None:
+            print("No captain object found!")
+        else:
+            move = 1 if (inp > 0) else -1
+            # initiate location and destination
+            oldpos = [self.__captain.getypos(), self.__captain.getxpos()]
+            newpos = [self.__captain.getypos()][self.__captain.getxpos() + move]
+            # object at the destination
+            target = self.__field[newpos[0]][newpos[1]]
+            if target == None:
+                # update field
+                self.__field[newpos[0]][newpos[1]] = self.__captain 
+                self.__field[oldpos[0]][oldpos[1]] = None
+                # update captain
+                self.__captain.setxpos(self.__captain.getxpos() + move)
+            elif isinstance(target, Veggie):
+                # update field
+                self.__field[newpos[0]][newpos[1]] = self.__captain 
+                self.__field[oldpos[0]][oldpos[1]] = None
+                # update captain
+                self.__captain.setxpos(self.__captain.getxpos() + move)
+                
+                name, worth = target.getname(), target.getworth()
+                print("Captain has picked up a delicious", name, "from the field!")
+                self.__captain.addVeggie(target)
+                self.__score += worth
+            elif isinstance(target, Rabbit):
+                x = "right" if move == 1 else "left"
+                print("Can't move " + x + "; Don't step on the rabbits!")
+                
+    def moveCaptain(self):
+        # calc field width and field height
+        fw, fh = len(self.__field[0]), len(self.__field)
+        key = input("Move the captain: Up (W), Down (S), Left (A), Right(D): ")
+        k = key.lower() 
+        mx, my = self.__captain.getxpos(), self.__captain.getypos()
+        if (k == "W"):
+            if (my + 1) <= (fh-1):
+                moveCptVertical(1)
+            else: 
+                print("Going up is out of bounds!")
+        elif (k == "S"):
+            if (my - 1) >= 0:
+                moveCptVertical(-1)
+            else:
+                print("Going down is out of bounds!")
+        elif (k == "D"):
+            if (mx + 1) <= (fw-1):
+                moveCptHorizontal(1)
+            else:
+                print("Going right is out of bounds!")
+        elif (k == "A"):
+            if (mx - 1) >= 0:
+                moveCptHorizontal(-1)
+            else:
+                print("Going left is out of bounds!")
+        else:
+            print("Not a valid move command:", k)
+
 
