@@ -130,6 +130,7 @@ class GameEngine:
         if self.__captain = None:
             print("No captain object found!")
         else:
+            # 1 is down, -1 is up
             move = 1 if (inp > 0) else -1
             # initiate location and destination
             oldpos = [self.__captain.getypos(), self.__captain.getxpos()]
@@ -161,6 +162,7 @@ class GameEngine:
         if self.__captain = None:
             print("No captain object found!")
         else:
+            # 1 is right, -1 is left
             move = 1 if (inp > 0) else -1
             # initiate location and destination
             oldpos = [self.__captain.getypos(), self.__captain.getxpos()]
@@ -195,13 +197,13 @@ class GameEngine:
         k = key.lower() 
         mx, my = self.__captain.getxpos(), self.__captain.getypos()
         if (k == "W"):
-            if (my + 1) <= (fh-1):
-                moveCptVertical(1)
+            if (my - 1) >= 0:
+                moveCptVertical(-1)
             else: 
                 print("Going up is out of bounds!")
         elif (k == "S"):
-            if (my - 1) >= 0:
-                moveCptVertical(-1)
+            if (my + 1) <= (fh-1):
+                moveCptVertical(1)
             else:
                 print("Going down is out of bounds!")
         elif (k == "D"):
