@@ -1,5 +1,5 @@
 # Author: Christian O'Connell
-# Date: 12/1/2023 and 12/6/2023
+# Date: 12/1/2023
 # Description: Drives the core game functionality
 
 import os
@@ -28,7 +28,6 @@ class GameEngine:
         firstLine = vegFile.readline().strip().split(",")
         fieldHeight = int(firstLine[1])
         fieldWidth = int(firstLine[2])
-
         for i in range(fieldWidth):
             arr = []
             for j in range(fieldHeight):
@@ -43,7 +42,7 @@ class GameEngine:
         vegFile.close()
         count = 0
         while(count < NUMBEROFVEGGIES):
-            randPos = random.randint(0, fieldWidth*fieldHeight)
+            randPos = random.randint(0, (fieldWidth*fieldHeight) - 1)
             if(self.__field[randPos // fieldWidth][randPos % fieldWidth] == None):
                 self.__field[randPos // fieldWidth][randPos % fieldWidth] = self.__vegetables[random.randint(0, len(self.__vegetables))]
                 # selects random position and puts a random vegetable there (if that position is open)
@@ -85,7 +84,7 @@ class GameEngine:
         fieldWidth = len(self.__field)
         fieldHeight = len(self.__field[0])
         while (count < NUMBEROFRABBITS):
-            randPos = random.randint(0, fieldWidth * fieldHeight)
+            randPos = random.randint(0, (fieldWidth * fieldHeight) - 1)
             if (self.__field[randPos // fieldWidth][randPos % fieldWidth] == None):
                 newRabbit = Rabbit(randPos // fieldWidth, randPos % fieldWidth)
                 self.__rabbits.append(newRabbit)
