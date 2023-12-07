@@ -47,3 +47,5 @@ class GameEngine:
                 self.__field[randPos // fieldWidth][randPos % fieldWidth] = self.__vegetables[random.randint(0, len(self.__vegetables))]
                 # selects random position and puts a random vegetable there (if that position is open)
                 count += 1
+			else:
+				continue
