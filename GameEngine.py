@@ -118,9 +118,9 @@ class GameEngine:
         while True:
             randPos = random.randint(0, (fw*fh)-1)
             ry, rx = (randPos // fw) , (randPos % fh)
-            if(self.__field[ry][rx] == None):
-                c = Captain(ry, rx)
-                self.__field[ry][rx] = c
+            if(self.__field[rx][ry] == None):
+                c = Captain(rx, ry)
+                self.__field[rx][ry] = c
                 self.__captain = c
                 break
             else:
@@ -133,8 +133,8 @@ class GameEngine:
             # 1 is down, -1 is up
             move = 1 if (inp > 0) else -1
             # initiate location and destination
-            oldpos = [self.__captain.getypos(), self.__captain.getxpos()]
-            newpos = [self.__captain.getypos() + move][self.__captain.getxpos()]
+            oldpos = [self.__captain.getxpos(), self.__captain.getypos()]
+            newpos = [self.__captain.getxpos()][self.__captain.getypos() + move]
             # object at the destination
             target = self.__field[newpos[0]][newpos[1]]
             if target == None:
@@ -165,8 +165,8 @@ class GameEngine:
             # 1 is right, -1 is left
             move = 1 if (inp > 0) else -1
             # initiate location and destination
-            oldpos = [self.__captain.getypos(), self.__captain.getxpos()]
-            newpos = [self.__captain.getypos()][self.__captain.getxpos() + move]
+            oldpos = [self.__captain.getxpos(), self.__captain.getypos()]
+            newpos = [self.__captain.getxpos() + move][self.__captain.getypos()]
             # object at the destination
             target = self.__field[newpos[0]][newpos[1]]
             if target == None:
