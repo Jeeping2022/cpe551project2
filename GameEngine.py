@@ -6,6 +6,8 @@ import os
 import random
 from Veggie import Veggie
 from Rabbit import Rabbit
+from Captain import Captain
+from Snake import Snake
 
 NUMBEROFVEGGIES = 30
 NUMBEROFRABBITS = 5
@@ -15,6 +17,7 @@ class GameEngine:
     def __init__(self):
         self.__field = []
         self.__rabbits = []
+        self.__snake = None
         self.__captain = None
         self.__vegetables = [] #represents all possible vegetables in the game
         self.__score = 0
