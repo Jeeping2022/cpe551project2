@@ -60,7 +60,7 @@ class GameEngine:
         fieldWidth = len(self.__field)
         fieldHeight = len(self.__field[0])
         textLine = ""
-        for i in range((fieldWidth*2) + 1):
+        for i in range((fieldWidth*2) + 3):
             textLine+="#"
         print(textLine) # top border
 
@@ -75,7 +75,7 @@ class GameEngine:
             print(textLine)
 
         textLine = ""
-        for i in range((fieldWidth * 2) + 1):
+        for i in range((fieldWidth * 2) + 3):
             textLine += "#"
         print(textLine)  # bottom border
 
