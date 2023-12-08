@@ -117,7 +117,7 @@ class GameEngine:
 
     def initCaptain(self):
         # calc field width and field height
-        fw, fh = len(self.__field[0]), len(self.__field)
+        fh, fw = len(self.__field[0]), len(self.__field)
         while True:
             randPos = random.randint(0, (fw*fh)-1)
             ry, rx = (randPos // fw) , (randPos % fh)
@@ -125,6 +125,20 @@ class GameEngine:
                 c = Captain(rx, ry)
                 self.__field[rx][ry] = c
                 self.__captain = c
+                break
+            else:
+                continue
+
+    def initSnake(self):
+        # calc field width and field height
+        fh, fw = len(self.__field[0]), len(self.__field)
+        while True:
+            randPos = random.randint(0, (fw*fh)-1)
+            ry, rx = (randPos // fw) , (randPos % fh)
+            if(self.__field[rx][ry] == None):
+                s = Snake(rx, ry)
+                self.__field[rx][ry] = s
+                self.__snake = s
                 break
             else:
                 continue
