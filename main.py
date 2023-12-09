@@ -16,6 +16,7 @@ def main():
         ge.printField()
         ge.moveRabbits()
         ge.moveCaptain()
+        ge.moveSnake()
         numVegLeft = ge.remainingVeggies()
     # game ends when no veggies remain
     ge.gameOver()
