@@ -8,6 +8,7 @@ from Veggie import Veggie
 from Rabbit import Rabbit
 from Captain import Captain
 from Snake import Snake
+import pickle
 
 NUMBEROFVEGGIES = 30
 NUMBEROFRABBITS = 5
@@ -236,4 +237,58 @@ class GameEngine:
         else:
             print("Not a valid move command:", k)
 
+    	def getScore(self):
+		total = 0
+		for x in self.__captain.getbasket():
+			total += x.getworth()
+		return total
+		
+	def intro():
+		print("Welcome to Captain Veggie!")
+		print("The rabbits are eating up the field!")
+		print("We must collect as many vegetables as we can before they finish!")
+		print("Move with WASD to collect vegetables and avoid rabbits/snakes!")
+		print("Moving into a snake will make you lose 5 vegetables!")
+		print("Captain:", self.__captain.getsymbol())
+		print("Rabbit:" self.__rabbit.getsymbol())
+		print("Snake:", self.__snake.getsymbol())
+		for x in self.__vegetables:
+			print(x[0], ":" ,x[1], "is worth", x[2])
+		print("\n")
+			
+	def gameOver(self):
+		print("Game over!")
+		print("Veggies collected: ")
+		total = 0
+		for x in self.__captain.getbasket():
+			print(x.getname(), "--", x.getworth())
+			# Tomato -- 80
+			
+		print("Total points:", self.getScore())
+		
+	def highScore(self):
+		global HIGHSCOREFILE
+		sc = []
+		if not os.path.exists(HIGHSCOREFILE):
+			return
+			
+			
+		hsp = pickle.load( open(HIGHSCOREFILE, "rb"))
+		inp = ()
+		x = input("What are your initials?: ")
+		x = x[:3].upper()
+		inp[0] = x
+		inp[1] = self.getScore()
+		
+		if len(hsp < 1):
+			hsp[0] = inp
+		else:
+			hsp.append(inp)
+			hsp.sort(reverse=True)
+	
+		print("HIGH SCORES:")
+		for x in hsp:
+			print(x[0], ":" , x[1])
+			
+		pickle.dump(open(HIGHSCOREFILE, "wb"))
 
