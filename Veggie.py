@@ -9,7 +9,7 @@ class Veggie(FieldInhabitant):
 		self.__worth = int(worth)
 		
 	def __str__(self):
-		print(self.symbol + ": " + self.name + " " + self.worth + " points")
+		return f"{self._symbol}: {self.__name} {self.__worth} points"
 		
 	def setname(self, x):
 		self.__name = str(x)
