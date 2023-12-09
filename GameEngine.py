@@ -1,5 +1,5 @@
-# Author: Christian O'Connell
-# Date: 12/1/2023
+# Author: Christian O + Jason P
+# Date: 12/1/2023 - 12/8/2023
 # Description: Drives the core game functionality
 
 import os
@@ -144,7 +144,7 @@ class GameEngine:
                 continue
                 
     def moveCptVertical(self, inp):
-        if self.__captain = None:
+        if self.__captain == None:
             print("No captain object found!")
         else:
             # 1 is down, -1 is up
@@ -176,7 +176,7 @@ class GameEngine:
                 print("Can't move " + x + "; Don't step on the rabbits!")
                 
     def moveCptHorizontal(self, inp):
-        if self.__captain = None:
+        if self.__captain == None:
             print("No captain object found!")
         else:
             # 1 is right, -1 is left
@@ -215,22 +215,22 @@ class GameEngine:
         mx, my = self.__captain.getxpos(), self.__captain.getypos()
         if (k == "W"):
             if (my - 1) >= 0:
-                moveCptVertical(-1)
+                self.moveCptVertical(-1)
             else: 
                 print("Going up is out of bounds!")
         elif (k == "S"):
             if (my + 1) <= (fh-1):
-                moveCptVertical(1)
+                self.moveCptVertical(1)
             else:
                 print("Going down is out of bounds!")
         elif (k == "D"):
             if (mx + 1) <= (fw-1):
-                moveCptHorizontal(1)
+                self.moveCptHorizontal(1)
             else:
                 print("Going right is out of bounds!")
         elif (k == "A"):
             if (mx - 1) >= 0:
-                moveCptHorizontal(-1)
+                self.moveCptHorizontal(-1)
             else:
                 print("Going left is out of bounds!")
         else:
